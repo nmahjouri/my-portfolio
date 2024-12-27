@@ -118,6 +118,28 @@
       margin-bottom: 2rem;
       object-fit: cover;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* 
+      UNIFORM IMAGE STYLING 
+      to keep images centered and scaled nicely.
+      Feel free to adjust max-width (e.g., 400px or 800px).
+    */
+    .experience-img,
+    .project-img,
+    .teaching-img,
+    .hobby-img {
+      display: block;
+      margin: 1rem auto;
+      max-width: 600px;
+      width: 100%;      /* ensures it scales on smaller screens */
+      height: auto;
+      object-fit: cover;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
     }
 
     /* About Section */
@@ -152,13 +174,6 @@
       color: #444;
       line-height: 1.5;
     }
-    .experience-img {
-      max-width: 100%;
-      height: auto;
-      margin-top: 1rem;
-      border-radius: 6px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-    }
 
     /* Projects Section */
     #projects .project-list {
@@ -182,13 +197,6 @@
       font-size: 0.95rem;
       color: #444;
       line-height: 1.5;
-    }
-    .project-img {
-      max-width: 100%;
-      height: auto;
-      margin-top: 1rem;
-      border-radius: 6px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
     }
 
     /* Teaching & Outreach Section */
@@ -217,12 +225,6 @@
       color: #444;
       line-height: 1.5;
     }
-    .teaching-img {
-      max-width: 100%;
-      height: auto;
-      margin-top: 1rem;
-      border-radius: 6px;
-    }
 
     /* Hobbies & Interests Section */
     #hobbies .hobby-grid {
@@ -250,12 +252,6 @@
       font-size: 0.95rem;
       color: #444;
       line-height: 1.5;
-    }
-    .hobby-img {
-      max-width: 100%;
-      height: auto;
-      margin: 0.5rem 0 1rem;
-      border-radius: 6px;
     }
 
     /* Contact Section */
@@ -328,7 +324,7 @@
 
   <!-- HOME / HERO SECTION -->
   <section id="home" class="fade-in">
-    <!-- Placeholder image for Profile Pic -->
+    <!-- Profile Pic -->
     <img 
       src="profile_pic.jpg" 
       alt="Naeim Mahjouri Profile Picture" 
@@ -341,7 +337,6 @@
       innovative ways to learn, build, and share. Welcome to my corner of the web!
     </p>
     <div class="hero-buttons">
-      <!-- Replace YOUR_RESUME_LINK.pdf or your email address accordingly -->
       <a href="YOUR_RESUME_LINK.pdf" target="_blank">View Résumé</a>
       <a href="#contact">Contact Me</a>
     </div>
@@ -385,7 +380,6 @@
           sharpened both my technical and interdisciplinary communication skills while contributing 
           to next-gen memory technology.
         </p>
-        <!-- Placeholder image -->
         <img 
           src="mram.png" 
           alt="SOT MRAM Diagram" 
@@ -404,9 +398,8 @@
           industry conference, showcasing product features and securing interest from new partners 
           in expanding the applications of dry printing.
         </p>
-        <!-- Placeholder image -->
         <img 
-          src="" 
+          src="nanoprintek.jpg" 
           alt="NanoPrintek Tech" 
           class="experience-img"
         >
@@ -418,7 +411,6 @@
   <section id="projects" class="fade-in">
     <h2 class="section-title">Projects</h2>
     <div class="project-list">
-
       <!-- FPGA External Memory -->
       <div class="project">
         <h3>FPGA External Memory Project</h3>
@@ -429,7 +421,6 @@
           me meticulous testing and step-by-step troubleshooting, honing my analytical and 
           problem-solving skills.
         </p>
-        <!-- Placeholder image -->
         <img 
           src="digital_design.jpg" 
           alt="FPGA board" 
@@ -447,7 +438,6 @@
           fingerprint sensor for authentication. Overcoming hardware hurdles taught me the value 
           of thorough testing and creativity in problem-solving.
         </p>
-        <!-- Placeholder image -->
         <img 
           src="medibee_tracker.jpg" 
           alt="MediBee Prototype" 
@@ -469,13 +459,11 @@
           humor, I aim to ignite curiosity about emerging tech, physics, and engineering. Teaching 
           through YouTube has been an incredible way to share my passion and inspire future innovators.
         </p>
-        <!-- Placeholder image -->
         <img 
           src="naeinstein_explains.jpg" 
           alt="Naeinstein Explains Logo" 
           class="teaching-img"
         >
-        <!-- Replace with your actual channel link -->
         <p><strong>Channel Link:</strong> <a href="https://youtube.com" target="_blank">Visit My Channel</a></p>
       </div>
 
@@ -487,7 +475,6 @@
           By introducing interactive challenges and fostering a supportive environment, 
           I aim to spark a lifelong interest in STEM.
         </p>
-        <!-- Placeholder image -->
         <img 
           src="sciovirtual.jpg" 
           alt="ScioVirtual Class Photo" 
@@ -503,7 +490,6 @@
     <div class="hobby-grid">
       <div class="hobby">
         <h3>Basketball</h3>
-        <!-- Placeholder image -->
         <img 
           src="basketball.jpg" 
           alt="Playing Basketball" 
@@ -516,7 +502,6 @@
       </div>
       <div class="hobby">
         <h3>Language Learning (Chinese)</h3>
-        <!-- Placeholder image -->
         <img 
           src="chinese.jpg" 
           alt="Chinese Language" 
@@ -530,7 +515,6 @@
       </div>
       <div class="hobby">
         <h3>Violin</h3>
-        <!-- Placeholder image -->
         <img 
           src="violin.jpg" 
           alt="Violin" 
@@ -543,7 +527,6 @@
       </div>
       <div class="hobby">
         <h3>Content Creation</h3>
-        <!-- Placeholder image -->
         <img 
           src="naeinstein_explains.jpg" 
           alt="Content Creation" 
@@ -568,7 +551,6 @@
         feel free to reach out!
       </p>
       <div class="contact-links">
-        <!-- Update these with your actual email, LinkedIn, etc. -->
         <a href="mailto:youremail@domain.com">Email Me</a>
         <a href="https://www.linkedin.com" target="_blank">LinkedIn</a>
       </div>
