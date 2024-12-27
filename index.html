@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Naeim Mahjouri - Electrical Engineering & Emerging Tech Enthusiast</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Naeim Mahjouri - Portfolio</title>
 
-  <!-- Google Fonts (Optional) -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link 
@@ -13,37 +13,46 @@
     rel="stylesheet"
   >
 
+  <!-- GSAP Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
   <style>
-    /* Global Reset & Basic Styling */
+    /* Reset */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    html {
-      scroll-behavior: smooth; /* enables smooth scrolling */
-    }
+    
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: #f9fafa; 
+      background: linear-gradient(to bottom, #f9fafa, #e3f2fd);
       color: #333;
       line-height: 1.6;
+      overflow-x: hidden;
     }
-    
+
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+
     /* Navigation Bar */
     nav {
       position: fixed;
+      top: 0;
       width: 100%;
-      background-color: #ffffff;
+      background: rgba(255, 255, 255, 0.9);
       display: flex;
       justify-content: center;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       z-index: 999;
+      transition: background-color 0.3s;
     }
     nav ul {
       list-style: none;
       display: flex;
-      gap: 1.5rem;
+      gap: 2rem;
       padding: 1rem;
     }
     nav ul li a {
@@ -53,235 +62,88 @@
       transition: color 0.3s ease;
     }
     nav ul li a:hover {
-      color: #008080; /* turquoise accent on hover */
-    }
-
-    /* Section Styling */
-    section {
-      padding: 80px 10% 60px; /* top space accounts for fixed nav */
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    h2.section-title {
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
       color: #008080;
-      font-weight: 600;
-      text-align: center;
     }
 
-    /* Hero / Home Section */
+    /* Hero Section */
     #home {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      min-height: 100vh;
       text-align: center;
-      min-height: 100vh; 
+      background: linear-gradient(to right, #008080, #00bcd4);
+      color: #fff;
+      position: relative;
     }
-    #home .hero-heading {
-      font-size: 2.5rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
+    #home h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      opacity: 0;
     }
-    #home .hero-subheading {
-      font-size: 1.2rem;
-      color: #555;
-      margin-bottom: 1.5rem;
-    }
-    #home .hero-intro {
-      font-size: 1rem;
-      max-width: 600px;
+    #home h2 {
+      font-size: 1.5rem;
       margin-bottom: 2rem;
-      color: #444;
+      opacity: 0;
+    }
+    #home p {
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      opacity: 0;
     }
     #home .hero-buttons a {
       display: inline-block;
-      margin: 0 0.5rem;
       padding: 0.75rem 1.5rem;
+      margin: 0 0.5rem;
       text-decoration: none;
-      background-color: #008080;
-      color: #fff;
+      background-color: #fff;
+      color: #008080;
       border-radius: 5px;
-      transition: background-color 0.3s ease;
-      font-weight: 500;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      font-weight: 600;
     }
     #home .hero-buttons a:hover {
-      background-color: #006d6d; 
+      transform: translateY(-5px);
+      background-color: #ffdd57;
     }
 
-    /* Profile Image in Hero */
-    .profile-pic {
-      width: 200px;
-      height: auto;
-      border-radius: 8px;
+    /* Section Styling */
+    section {
+      padding: 100px 10% 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    h2.section-title {
+      font-size: 2rem;
       margin-bottom: 2rem;
-      object-fit: cover;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
+      color: #008080;
+      text-align: center;
+      position: relative;
+      opacity: 0;
+    }
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
     }
 
-    /* 
-      UNIFORM IMAGE STYLING 
-      to keep images centered and scaled nicely.
-      Feel free to adjust max-width (e.g., 400px or 800px).
-    */
-    .experience-img,
-    .project-img,
-    .teaching-img,
-    .hobby-img {
-      display: block;
-      margin: 1rem auto;
-      max-width: 600px;
-      width: 100%;      /* ensures it scales on smaller screens */
+    /* Cards */
+    .card {
+      background-color: #fff;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+    .card img {
+      width: 100%;
       height: auto;
-      object-fit: cover;
-      border-radius: 6px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-    }
-
-    /* About Section */
-    #about .about-content {
-      font-size: 1rem;
-      color: #444;
-      max-width: 800px;
-      margin: 0 auto;
-      line-height: 1.6;
-    }
-
-    /* Experience Section */
-    #experience .experience-list {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-    .experience-item {
-      background-color: #fff;
-      padding: 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
-    }
-    .experience-item h3 {
-      margin-bottom: 0.5rem;
-      color: #333;
-      font-weight: 600;
-    }
-    .experience-item p {
-      font-size: 0.95rem;
-      color: #444;
-      line-height: 1.5;
-    }
-
-    /* Projects Section */
-    #projects .project-list {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-    .project {
-      background-color: #fff;
-      padding: 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
-    }
-    .project h3 {
-      margin-bottom: 0.5rem;
-      color: #333;
-      font-weight: 600;
-    }
-    .project p {
-      font-size: 0.95rem;
-      color: #444;
-      line-height: 1.5;
-    }
-
-    /* Teaching & Outreach Section */
-    #teaching .teaching-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      margin-top: 2rem;
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .teaching-item {
-      background-color: #fff;
-      padding: 1.2rem;
-      border-radius: 6px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-    }
-    .teaching-item h3 {
-      margin-bottom: 0.3rem;
-      color: #333;
-      font-weight: 600;
-    }
-    .teaching-item p {
-      font-size: 0.95rem;
-      color: #444;
-      line-height: 1.5;
-    }
-
-    /* Hobbies & Interests Section */
-    #hobbies .hobby-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .hobby {
-      background-color: #fff;
-      padding: 1.2rem;
-      border-radius: 6px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-      text-align: center;
-    }
-    .hobby h3 {
-      margin-bottom: 0.5rem;
-      color: #333;
-      font-weight: 600;
-    }
-    .hobby p {
-      font-size: 0.95rem;
-      color: #444;
-      line-height: 1.5;
-    }
-
-    /* Contact Section */
-    #contact .contact-content {
-      text-align: center;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-    #contact .contact-content p {
+      border-radius: 10px;
       margin-bottom: 1rem;
-      font-size: 1rem;
-      color: #444;
-    }
-    #contact .contact-links {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-    #contact .contact-links a {
-      text-decoration: none;
-      color: #fff;
-      background-color: #008080;
-      padding: 0.75rem 1.5rem;
-      border-radius: 5px;
-      transition: background-color 0.3s ease;
-      font-weight: 500;
-    }
-    #contact .contact-links a:hover {
-      background-color: #006d6d;
     }
 
     /* Footer */
@@ -293,18 +155,6 @@
       background-color: #fafafa;
       border-top: 1px solid #eee;
     }
-
-    /* Basic "inactive" styling for fade/slide animations */
-    .fade-in, .slide-in {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-    /* When the element becomes visible in the viewport, we'll add a .visible class with JS */
-    .visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
   </style>
 </head>
 <body>
@@ -313,248 +163,43 @@
   <nav>
     <ul>
       <li><a href="#home">Home</a></li>
-      <li><a href="#about">About Me</a></li>
-      <li><a href="#experience">Experience</a></li>
+      <li><a href="#about">About</a></li>
       <li><a href="#projects">Projects</a></li>
-      <li><a href="#teaching">Teaching & Outreach</a></li>
-      <li><a href="#hobbies">Hobbies</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
 
-  <!-- HOME / HERO SECTION -->
-  <section id="home" class="fade-in">
-    <!-- Profile Pic -->
-    <img 
-      src="profile_pic.jpg" 
-      alt="Naeim Mahjouri Profile Picture" 
-      class="profile-pic"
-    >
-    <h1 class="hero-heading">Naeim Mahjouri</h1>
-    <h2 class="hero-subheading">Junior in Electrical Engineering &amp; Emerging Tech Enthusiast</h2>
-    <p class="hero-intro">
-      Hello! I’m Naeim, a passionate explorer of new technologies, always seeking 
-      innovative ways to learn, build, and share. Welcome to my corner of the web!
-    </p>
+  <!-- HERO SECTION -->
+  <section id="home">
+    <h1>Naeim Mahjouri</h1>
+    <h2>Electrical Engineer & Emerging Tech Enthusiast</h2>
+    <p>Passionate about creating solutions that push boundaries and inspire change in the tech world.</p>
     <div class="hero-buttons">
-      <a href="YOUR_RESUME_LINK.pdf" target="_blank">View Résumé</a>
+      <a href="#about">Learn More</a>
       <a href="#contact">Contact Me</a>
     </div>
   </section>
 
-  <!-- ABOUT ME SECTION -->
+  <!-- ABOUT SECTION -->
   <section id="about" class="fade-in">
     <h2 class="section-title">About Me</h2>
-    <div class="about-content">
-      <p>
-        I’m currently a junior at Georgia Tech, majoring in Electrical Engineering with a 
-        special interest in nanoelectronics and emerging technologies. My journey in science 
-        and engineering started early, fueled by curiosity about how things work at both 
-        the macro and nano scale.
-      </p>
-      <p>
-        With hands-on experience in research labs and hardware design projects, I aim to 
-        push boundaries and create solutions that can positively impact society. 
-        I’m especially fascinated by SOT-MRAM memory systems, novel device fabrication, 
-        and exploring how technology can shape our world.
-      </p>
-      <p>
-        In the future, I hope to pursue deeper research opportunities, continue innovating, 
-        and share my knowledge with others.
-      </p>
-    </div>
-  </section>
-
-  <!-- EXPERIENCE SECTION -->
-  <section id="experience" class="fade-in">
-    <h2 class="section-title">Experience</h2>
-    <div class="experience-list">
-      <!-- SOT-MRAM Research -->
-      <div class="experience-item">
-        <h3>SOT-MRAM Research (Undergraduate Research Assistant)</h3>
-        <p>
-          As an undergraduate research assistant in the Nanoelectronics Research Lab at Georgia Tech, 
-          I investigate cutting-edge Spin-Orbit Torque Magnetic Random Access Memory (SOT-MRAM). My 
-          work spans iterative simulations in MATLAB and COMSOL, exploring ways to optimize 
-          performance metrics like energy efficiency and data retention. This experience has 
-          sharpened both my technical and interdisciplinary communication skills while contributing 
-          to next-gen memory technology.
-        </p>
-        <img 
-          src="mram.png" 
-          alt="SOT MRAM Diagram" 
-          class="experience-img"
-        >
-      </div>
-
-      <!-- NanoPrintek Internship -->
-      <div class="experience-item">
-        <h3>Product Engineer Intern at NanoPrintek</h3>
-        <p>
-          As a Product Engineer Intern at NanoPrintek, I performed hands-on soldering and wiring 
-          for the company’s dry printing technology, helping to optimize system design and enhance 
-          printing precision. I created technical manuals and instructional videos to guide end-users, 
-          significantly reducing setup-related inquiries. I also represented the startup at a major 
-          industry conference, showcasing product features and securing interest from new partners 
-          in expanding the applications of dry printing.
-        </p>
-        <img 
-          src="nanoprintek.png" 
-          alt="NanoPrintek Tech" 
-          class="experience-img"
-        >
-      </div>
-    </div>
+    <p>I am a junior at Georgia Tech, exploring the exciting intersections of nanoelectronics, AI, and cutting-edge hardware design.</p>
   </section>
 
   <!-- PROJECTS SECTION -->
   <section id="projects" class="fade-in">
     <h2 class="section-title">Projects</h2>
-    <div class="project-list">
-      <!-- FPGA External Memory -->
-      <div class="project">
-        <h3>FPGA External Memory Project</h3>
-        <p>
-          In my Digital System Design Lab, I developed proficiency in VHDL coding, FPGA programming, 
-          and hardware debugging. I built a secure external memory peripheral for SCOMP, supporting 
-          stack and queue operations, password protection, and more. This hands-on experience taught 
-          me meticulous testing and step-by-step troubleshooting, honing my analytical and 
-          problem-solving skills.
-        </p>
-        <img 
-          src="digital_design.jpg" 
-          alt="FPGA board" 
-          class="project-img"
-        >
-      </div>
-
-      <!-- MediBee Tracker -->
-      <div class="project">
-        <h3>MediBee Tracker</h3>
-        <p>
-          For a Grand Challenges Living Learning Community project, my team and I created a tracking 
-          device/database concept to facilitate medical resource delivery after natural disasters. 
-          I developed the prototype using GPS modules, LoRa antennas, an Arduino Nano, and a 
-          fingerprint sensor for authentication. Overcoming hardware hurdles taught me the value 
-          of thorough testing and creativity in problem-solving.
-        </p>
-        <img 
-          src="medibee_tracker.jpg" 
-          alt="MediBee Prototype" 
-          class="project-img"
-        >
-      </div>
-    </div>
-  </section>
-
-  <!-- TEACHING & OUTREACH SECTION -->
-  <section id="teaching" class="fade-in">
-    <h2 class="section-title">Teaching &amp; Outreach</h2>
-    <div class="teaching-list">
-      <div class="teaching-item">
-        <h3>Naeinstein Explains (YouTube Channel)</h3>
-        <p>
-          I founded "Naeinstein Explains" to break down complex scientific and technological concepts 
-          for a broad audience. By mixing engaging visuals, real-world applications, and a dash of 
-          humor, I aim to ignite curiosity about emerging tech, physics, and engineering. Teaching 
-          through YouTube has been an incredible way to share my passion and inspire future innovators.
-        </p>
-        <img 
-          src="naeinstein_explains.jpg" 
-          alt="Naeinstein Explains Logo" 
-          class="teaching-img"
-        >
-        <p><strong>Channel Link:</strong> <a href="https://youtube.com" target="_blank">Visit My Channel</a></p>
-      </div>
-
-      <div class="teaching-item">
-        <h3>ScioVirtual</h3>
-        <p>
-          Whether it's guiding middle schoolers in physics simulations online 
-          or hosting hands-on activities, I love making science fun and accessible. 
-          By introducing interactive challenges and fostering a supportive environment, 
-          I aim to spark a lifelong interest in STEM.
-        </p>
-        <img 
-          src="sciovirtual.jpg" 
-          alt="ScioVirtual Class Photo" 
-          class="teaching-img"
-        >
-      </div>
-    </div>
-  </section>
-
-  <!-- HOBBIES & INTERESTS SECTION -->
-  <section id="hobbies" class="fade-in">
-    <h2 class="section-title">Hobbies &amp; Interests</h2>
-    <div class="hobby-grid">
-      <div class="hobby">
-        <h3>Basketball</h3>
-        <img 
-          src="basketball.jpg" 
-          alt="Playing Basketball" 
-          class="hobby-img"
-        >
-        <p>
-          My go-to way to unwind! I love shooting hoops with friends, enjoying the outdoors, 
-          and staying active. It’s a great chance to clear my mind and reset for new challenges.
-        </p>
-      </div>
-      <div class="hobby">
-        <h3>Language Learning (Chinese)</h3>
-        <img 
-          src="chinese.jpg" 
-          alt="Chinese Language" 
-          class="hobby-img"
-        >
-        <p>
-          Exploring new languages opens doors to different cultures and perspectives.
-          Learning Chinese has been a rewarding challenge, pushing me to continuously 
-          adapt and grow.
-        </p>
-      </div>
-      <div class="hobby">
-        <h3>Violin</h3>
-        <img 
-          src="violin.jpg" 
-          alt="Violin" 
-          class="hobby-img"
-        >
-        <p>
-          Music has always been a creative outlet for me, and playing violin helps me 
-          develop focus and discipline while offering a sense of expression beyond engineering.
-        </p>
-      </div>
-      <div class="hobby">
-        <h3>Content Creation</h3>
-        <img 
-          src="naeinstein_explains.jpg" 
-          alt="Content Creation" 
-          class="hobby-img"
-        >
-        <p>
-          Creating engaging videos not only helps me share knowledge but also 
-          refines my storytelling and communication skills—essential for any 
-          engineer and researcher.
-        </p>
-      </div>
+    <div class="card">
+      <img src="project.jpg" alt="Project Image">
+      <h3>FPGA Memory</h3>
+      <p>Developed external memory systems for secure, efficient FPGA designs.</p>
     </div>
   </section>
 
   <!-- CONTACT SECTION -->
   <section id="contact" class="fade-in">
-    <h2 class="section-title">Get In Touch</h2>
-    <div class="contact-content">
-      <p>
-        I’m always open to new opportunities and collaborations. If you’d like 
-        to chat about internship roles, research projects, or anything in between, 
-        feel free to reach out!
-      </p>
-      <div class="contact-links">
-        <a href="mailto:youremail@domain.com">Email Me</a>
-        <a href="https://www.linkedin.com" target="_blank">LinkedIn</a>
-      </div>
-    </div>
+    <h2 class="section-title">Contact Me</h2>
+    <p>Feel free to reach out for collaborations, internships, or just a chat!</p>
   </section>
 
   <!-- FOOTER -->
@@ -562,32 +207,32 @@
     &copy; <span id="year"></span> Naeim Mahjouri. All rights reserved.
   </footer>
 
-  <!-- JavaScript for "on-scroll" animations using Intersection Observer -->
+  <!-- JavaScript for GSAP Animations -->
   <script>
+    gsap.registerPlugin();
+
+    // GSAP Hero Animations
+    gsap.timeline()
+      .from("#home h1", { opacity: 0, y: -50, duration: 1 })
+      .from("#home h2", { opacity: 0, y: -50, duration: 1 }, "-=0.5")
+      .from("#home p", { opacity: 0, y: -50, duration: 1 }, "-=0.5")
+      .from(".hero-buttons a", { opacity: 0, scale: 0.9, stagger: 0.2, duration: 1 }, "-=0.5");
+
+    // Fade-in Animations
+    gsap.utils.toArray(".fade-in").forEach(section => {
+      gsap.from(section, {
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%",
+        },
+        opacity: 0,
+        y: 30,
+        duration: 1
+      });
+    });
+
     // Auto-update year in footer
     document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Intersection Observer for fade/slide animations
-    const animatedSections = document.querySelectorAll('.fade-in, .slide-in');
-    
-    const options = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.1 // trigger when 10% of the section is visible
-    };
-
-    const observer = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          obs.unobserve(entry.target);
-        }
-      });
-    }, options);
-
-    animatedSections.forEach(section => {
-      observer.observe(section);
-    });
   </script>
 </body>
 </html>
