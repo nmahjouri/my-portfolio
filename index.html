@@ -129,8 +129,7 @@
       min-height: 100vh;
       position: relative;
 
-      /* Instead of a background image, use a light overlay effect 
-         so text is more readable on top of the animated gradient. */
+      /* Light overlay so text is readable over the gradient. */
       background-color: rgba(255, 255, 255, 0.3);
       backdrop-filter: blur(2px);
     }
@@ -237,19 +236,36 @@
       }
     }
 
+    /* -------------------- SIDE-BY-SIDE CONTAINER (new) -------------------- */
+    .item-content {
+      display: flex;             /* side-by-side layout */
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 1.5rem;
+      flex-wrap: wrap;          /* wraps on smaller screens */
+    }
+    .item-content img {
+      max-width: 300px;         /* control max image width */
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+      object-fit: cover;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+    /* Stacks content on narrower screens */
+    @media (max-width: 768px) {
+      .item-content {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
     /* -------------------- UNIFORM IMAGE STYLES -------------------- */
     .experience-img,
     .project-img,
     .teaching-img,
     .hobby-img {
-      display: block;
-      margin: 1rem auto;
-      max-width: 300px;
-      width: 100%; 
-      height: auto;
-      object-fit: cover;
-      border-radius: 6px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      margin: 1rem auto; /* margin for older sections if needed */
     }
 
     /* -------------------- ABOUT SECTION -------------------- */
@@ -497,44 +513,48 @@
     </div>
   </section>
 
-  <!-- EXPERIENCE SECTION -->
+  <!-- EXPERIENCE SECTION (Side-by-side text & image) -->
   <section id="experience" class="fade-in">
     <h2 class="section-title">Experience</h2>
     <div class="experience-list">
       <!-- SOT-MRAM Research -->
       <div class="experience-item">
         <h3>SOT-MRAM Research (Undergraduate Research Assistant)</h3>
-        <p>
-          As an undergraduate research assistant in the Nanoelectronics Research Lab at Georgia Tech,
-          I investigate cutting-edge Spin-Orbit Torque Magnetic Random Access Memory (SOT-MRAM). My
-          work spans iterative simulations in MATLAB and COMSOL, exploring ways to optimize
-          performance metrics like energy efficiency and data retention. This experience has
-          sharpened both my technical and interdisciplinary communication skills while contributing
-          to next-gen memory technology.
-        </p>
-        <img 
-          src="mram.png" 
-          alt="SOT MRAM Diagram" 
-          class="experience-img"
-        >
+        <div class="item-content">
+          <p>
+            As an undergraduate research assistant in the Nanoelectronics Research Lab at Georgia Tech,
+            I investigate cutting-edge Spin-Orbit Torque Magnetic Random Access Memory (SOT-MRAM).
+            My work spans iterative simulations in MATLAB and COMSOL, exploring ways to optimize
+            performance metrics like energy efficiency and data retention. This experience has
+            sharpened both my technical and interdisciplinary communication skills while contributing
+            to next-gen memory technology.
+          </p>
+          <img 
+            src="mram.png" 
+            alt="SOT MRAM Diagram" 
+            class="experience-img"
+          >
+        </div>
       </div>
 
       <!-- NanoPrintek Internship -->
       <div class="experience-item">
         <h3>Product Engineer Intern at NanoPrintek</h3>
-        <p>
-          As a Product Engineer Intern at NanoPrintek, I performed hands-on soldering and wiring 
-          for the company’s dry printing technology, helping to optimize system design and enhance 
-          printing precision. I created technical manuals and instructional videos to guide end-users, 
-          significantly reducing setup-related inquiries. I also represented the startup at a major 
-          industry conference, showcasing product features and securing interest from new partners 
-          in expanding the applications of dry printing.
-        </p>
-        <img 
-          src="nanoprintek.png" 
-          alt="NanoPrintek Tech" 
-          class="experience-img"
-        >
+        <div class="item-content">
+          <p>
+            As a Product Engineer Intern at NanoPrintek, I performed hands-on soldering and wiring 
+            for the company’s dry printing technology, helping to optimize system design and enhance 
+            printing precision. I created technical manuals and instructional videos to guide end-users, 
+            significantly reducing setup-related inquiries. I also represented the startup at a major 
+            industry conference, showcasing product features and securing interest from new partners 
+            in expanding the applications of dry printing.
+          </p>
+          <img 
+            src="nanoprintek.png" 
+            alt="NanoPrintek Tech" 
+            class="experience-img"
+          >
+        </div>
       </div>
     </div>
   </section>
@@ -579,39 +599,43 @@
     </div>
   </section>
 
-  <!-- TEACHING & OUTREACH SECTION -->
+  <!-- TEACHING & OUTREACH SECTION (Side-by-side text & image) -->
   <section id="teaching" class="fade-in">
     <h2 class="section-title">Teaching &amp; Outreach</h2>
     <div class="teaching-list">
       <div class="teaching-item">
         <h3>Naeinstein Explains (YouTube Channel)</h3>
-        <p>
-          I founded "Naeinstein Explains" to break down complex scientific and technological concepts 
-          for a broad audience. By mixing engaging visuals, real-world applications, and a dash of 
-          humor, I aim to ignite curiosity about emerging tech, physics, and engineering. Teaching 
-          through YouTube has been an incredible way to share my passion and inspire future innovators.
-        </p>
-        <img 
-          src="naeinstein_explains.jpg" 
-          alt="Naeinstein Explains Logo" 
-          class="teaching-img"
-        >
+        <div class="item-content">
+          <p>
+            I founded "Naeinstein Explains" to break down complex scientific and technological concepts 
+            for a broad audience. By mixing engaging visuals, real-world applications, and a dash of 
+            humor, I aim to ignite curiosity about emerging tech, physics, and engineering. Teaching 
+            through YouTube has been an incredible way to share my passion and inspire future innovators.
+          </p>
+          <img 
+            src="naeinstein_explains.jpg" 
+            alt="Naeinstein Explains Logo" 
+            class="teaching-img"
+          >
+        </div>
         <p><strong>Channel Link:</strong> <a href="https://youtube.com" target="_blank">Visit My Channel</a></p>
       </div>
 
       <div class="teaching-item">
         <h3>ScioVirtual</h3>
-        <p>
-          Whether it's guiding middle schoolers in physics simulations online 
-          or hosting hands-on activities, I love making science fun and accessible. 
-          By introducing interactive challenges and fostering a supportive environment, 
-          I aim to spark a lifelong interest in STEM.
-        </p>
-        <img 
-          src="sciovirtual.jpg" 
-          alt="ScioVirtual Class Photo" 
-          class="teaching-img"
-        >
+        <div class="item-content">
+          <p>
+            Whether it's guiding middle schoolers in physics simulations online 
+            or hosting hands-on activities, I love making science fun and accessible. 
+            By introducing interactive challenges and fostering a supportive environment, 
+            I aim to spark a lifelong interest in STEM.
+          </p>
+          <img 
+            src="sciovirtual.jpg" 
+            alt="ScioVirtual Class Photo" 
+            class="teaching-img"
+          >
+        </div>
       </div>
     </div>
   </section>
