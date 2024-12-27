@@ -33,7 +33,7 @@
       overflow-x: hidden;
     }
 
-    /* Animated Gradient Background */
+    /* Animated Gradient Background (covers entire page) */
     body::before {
       content: "";
       position: fixed;
@@ -128,25 +128,24 @@
       text-align: center;
       min-height: 100vh;
       position: relative;
-      background: url('https://via.placeholder.com/1920x1080?text=Hero+Background') 
-                  no-repeat center center/cover;
-      background-attachment: fixed; /* parallax effect */
-    }
-    /* A subtle overlay to make text more readable over the background image */
-    #home::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(255, 255, 255, 0.5);
+
+      /* Instead of a background image, use a light overlay effect 
+         so text is more readable on top of the animated gradient. */
+      background-color: rgba(255, 255, 255, 0.3);
       backdrop-filter: blur(2px);
-      z-index: 1;
+    }
+    /* Remove the hero overlay pseudo-element */
+    #home::after {
+      content: none; 
     }
     #home .hero-content {
       position: relative;
-      z-index: 2; /* above the overlay */
+      z-index: 2; 
       padding: 2rem 1rem;
     }
-    #home .hero-heading {
+
+    /* Hero Animations & Styles */
+    .hero-heading {
       font-size: 3rem;
       font-weight: 700;
       margin-bottom: 0.5rem;
@@ -164,7 +163,7 @@
         opacity: 1;
       }
     }
-    #home .hero-subheading {
+    .hero-subheading {
       font-size: 1.4rem;
       color: #333;
       margin-bottom: 1.5rem;
@@ -181,7 +180,7 @@
         opacity: 1;
       }
     }
-    #home .hero-intro {
+    .hero-intro {
       font-size: 1rem;
       max-width: 600px;
       margin: 0 auto 2rem auto;
@@ -196,7 +195,7 @@
         transform: translateY(0);
       }
     }
-    #home .hero-buttons a {
+    .hero-buttons a {
       display: inline-block;
       margin: 0 0.5rem;
       padding: 0.75rem 1.5rem;
@@ -207,7 +206,7 @@
       background: linear-gradient(to right, #34d399, #06b6d4);
       transition: all 0.3s ease;
     }
-    #home .hero-buttons a:hover {
+    .hero-buttons a:hover {
       transform: translateY(-2px) scale(1.03);
       background: linear-gradient(to right, #06b6d4, #34d399);
     }
@@ -224,7 +223,7 @@
       margin-left: auto;
       margin-right: auto;
       position: relative;
-      z-index: 2; /* above overlay */
+      z-index: 2; 
       animation: picZoomIn 1.2s ease;
     }
     @keyframes picZoomIn {
@@ -428,7 +427,6 @@
     }
 
     /* -------------------- ON-SCROLL ANIMATIONS -------------------- */
-    /* Basic fade/slide styling */
     .fade-in, .slide-in {
       opacity: 0;
       transform: translateY(20px);
@@ -455,9 +453,8 @@
     </ul>
   </nav>
 
-  <!-- HOME / HERO SECTION -->
+  <!-- HERO SECTION -->
   <section id="home">
-    <!-- Hero content wrapper (for layering above parallax bg) -->
     <div class="hero-content">
       <img 
         src="profile_pic.jpg" 
